@@ -24,7 +24,6 @@ class UserController extends Controller
     public function index(Request $request): View
     {
         $data = User::latest()->paginate(5);
-
         return view('users.index', compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -39,7 +38,6 @@ class UserController extends Controller
     public function create(): View
     {
         $roles = Role::pluck('name', 'name')->all();
-
         return view('users.create', compact('roles'));
     }
 
@@ -55,7 +53,7 @@ class UserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
             'roles' => 'required'
@@ -124,7 +122,7 @@ class UserController extends Controller
     public function update(Request $request, $id): RedirectResponse
     {
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $id,
             'password' => 'same:confirm-password',
             'roles' => 'required'
