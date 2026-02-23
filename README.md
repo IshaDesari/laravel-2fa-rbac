@@ -38,8 +38,8 @@ A secure authentication system built with Laravel featuring:
 
 ### 
 
-1️⃣ Clone the repository
 ```bash
+1️⃣ Clone the repository
 git clone https://github.com/your-username/your-project-name.git
 cd your-project-name
 
