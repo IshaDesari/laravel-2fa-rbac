@@ -28,7 +28,7 @@ class TwoFAController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'code' => 'required',
+            'code' => 'required|string|max:4',
         ]);
 
         $find = UserCode::where('user_id', auth()->user()->id)
